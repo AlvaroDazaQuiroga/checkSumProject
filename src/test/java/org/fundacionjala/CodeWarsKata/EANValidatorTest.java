@@ -1,11 +1,12 @@
 package org.fundacionjala.CodeWarsKata;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by AlvaroDaza on 8/26/2016.
+ * Test for {@Link EANValidator}
  */
 public class EANValidatorTest {
     @Test
