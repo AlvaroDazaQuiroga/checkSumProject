@@ -12,7 +12,7 @@ public class EANValidator {
     private static final int VECTOR_LENGTH_INIT = 13;
     private static final int PAIR_ODD_DIVIDER = 2;
     private static final int RESULT_CONDITION = 0;
-    private static final int PENULT_VENTOR_POSITION = 1;
+
 
     /**
      * calculate the total value of the pair and odd number
@@ -21,7 +21,7 @@ public class EANValidator {
      * @return shows the result , true or false
      */
     public static boolean validate(String code) {
-        int lastValue = Character.getNumericValue(code.charAt(code.length() - PENULT_VENTOR_POSITION));
+        int lastValue = Character.getNumericValue(code.charAt(code.length() - 1));
         int[] checkSum = fillTheVector(code);
         int total = 0;
         for (int i = 0; i <= code.length() - LENGTH_ARRAY_LIMIT; i++) {
@@ -38,10 +38,19 @@ public class EANValidator {
      * @return return true or fale
      */
 
-    private static boolean checkSumResult(int lastValue, int total) {
-        int checkSumValue = total % CHECKSUM_FORMULA_CONDITION == RESULT_CONDITION ? 0 :
+    public static boolean checkSumResult(int lastValue, int total) {
+        return checksumValue(total) == lastValue;
+    }
+
+    /**
+     * this class is in charge to calculate the checkValue
+     * @param total total added
+     * @return return de add 
+     */
+
+    public static int checksumValue(int total) {
+        return total % CHECKSUM_FORMULA_CONDITION == RESULT_CONDITION ? 0 :
                 VALUE_OF_THE_FORMULA - (total % VALUE_OF_THE_FORMULA);
-        return checkSumValue == lastValue ? true : false;
     }
 
     /**
